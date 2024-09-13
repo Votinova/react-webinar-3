@@ -26,3 +26,9 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+export function pl (num) {
+  if ((num % 10 === 2 || num % 10 === 3 || num % 10 == 4)&& (num / 10 !== 1)) {
+    return `| Выделяли ${num} раза`;
+  } else return `| Выделяли ${num} раз`
+}

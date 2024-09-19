@@ -1,0 +1,10 @@
+.Footer {
+    height: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 20.7px;
+    text-align: left;
+    display: flex;
+    gap: 30px;
+}
+  

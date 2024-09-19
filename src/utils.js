@@ -50,3 +50,13 @@ export const generateCode1 = (function (start = 0) {
 export function generateCode2() {
   return generateCode2.value ? ++generateCode2.value : (generateCode2.value = 1);
 }
+
+
+export function counterPrice (list) {
+  let sum = 0;
+  for (let item of list) {
+      sum +=item.price * item.count;
+  }
+  return sum
+}
+

@@ -1,0 +1,13 @@
+.title h1{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20.7px;
+    text-align: left;
+    
+}
+.title {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}

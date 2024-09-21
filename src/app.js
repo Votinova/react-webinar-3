@@ -5,6 +5,8 @@ import Head from './components/head';
 import PageLayout from './components/page-layout';
 import Modal from './components/modal';
 import Title from './components/title';
+import { counterPrice } from './store';
+import Footer from './components/footer';
 
 /**
  * Приложение
@@ -37,11 +39,13 @@ function App({ store}) {
     }
   };
 
+  const obj = counterPrice(cart);
+
   return (
     <PageLayout>
-      <Head title="Приложение на чистом JS" style={'Head'}/>
+      <Head title="Магазин" style={'Head'}/>
       <div>
-        <Title list={cart}>
+        <Title list={cart} sum={obj.sum} count={obj.count}>
           <Controls onAdd={callbacks.onShow} text={'Перейти'}/>
         </Title>
       </div>
@@ -50,7 +54,18 @@ function App({ store}) {
         onClick={callbacks.onAddItem}
         text={'Добавить'}
       />
-      <Modal show={show} onClose={callbacks.onClose} list={cart} onDelete = {callbacks.onDeleteItem}/>
+      <Modal show={show}>
+      <Head title={'Корзина'} style={'Modal-title'}/>
+                <div className='close-btn'>
+                    <Controls onAdd={callbacks.onClose} text={'Закрыть'}/>
+                </div>
+                <div className='skip'>   
+                </div>
+                <List  list={cart} text={'Удалить'} onClick={callbacks.onDeleteItem}/>
+                <div className='footer'>
+                    <Footer sum={counterPrice(cart).sum}/>
+                </div>
+      </Modal>
     </PageLayout>
   );
 }

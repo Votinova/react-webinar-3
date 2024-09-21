@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import './style.css'
 
 function Footer ({sum}) {
@@ -12,6 +13,10 @@ function Footer ({sum}) {
         </h1>
     </div>
   )
+}
+
+Footer.propTypes = {
+  sum: PropTypes.number
 }
 
 export default React.memo(Footer);

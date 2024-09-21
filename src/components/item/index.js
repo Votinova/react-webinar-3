@@ -6,7 +6,7 @@ function Item(props) {
   const callbacks = {
     onClickBtn: e => {
       e.stopPropagation();
-      props.onClick(props.item);
+      props.onClick(props.item.code);
     },
   };
 

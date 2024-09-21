@@ -43,22 +43,13 @@ class Store {
   /**
    * Добавление новой записи
    */
-  addItem(i) {
-    if (this.state.cart.find(item => item.code === i.code)) {
-      this.setState ({
-        ...this.state,
-      cart: this.state.cart.map(item => {
-        if (item.code === i.code) {
-          item.count++;
-        }
-        return item
-      })
-      })
+  addItem(code) {
+    let i = this.state.list.find(item => item.code === code)
+    let item = this.state.cart.find(item => item.code === i.code)
+    if (item) {
+        item.count +=1;
     } else {
-      this.setState({
-        ...this.state,
-        cart: [...this.state.cart, i]
-      })
+      this.state.cart.push({...i, count: 1})
     }
   }
 
@@ -66,36 +57,28 @@ class Store {
    * Удаление записи по коду
    * @param code
    */
-  deleteItem(i) {
+  deleteItem(code) {
+    let i = this.state.cart.find(item => item.code === code);
+    i.count = 0;
     this.setState({
       ...this.state,
       // Новый список, в котором не будет удаляемой записи
       cart: this.state.cart.filter(item => item.code !== i.code),
-    });
-    i.count = 1;
+    }); 
   }
+}
 
-  /**
-   * Выделение записи по коду
-   * @param code
-   */
-  selectItem(code) {
-    this.setState({
-      ...this.state,
-      list: this.state.list.map(item => {
-        if (item.code === code) {
-          // Смена выделения и подсчёт
-          return {
-            ...item,
-            selected: !item.selected,
-            count: item.selected ? item.count : item.count + 1 || 1,
-          };
-        }
-        // Сброс выделения если выделена
-        return item.selected ? { ...item, selected: false } : item;
-      }),
-    });
+
+export function counterPrice (list) {
+  let obj = {
+    sum: 0,
+    count: 0
   }
+  for (let item of list) {
+      obj.sum +=item.price * item.count;
+  }
+  obj.count = list.length;
+  return obj
 }
 
 export default Store;

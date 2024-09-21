@@ -12,6 +12,7 @@ function Controls({ onAdd, text }) {
 
 Controls.propTypes = {
   onAdd: PropTypes.func,
+  text: PropTypes.string
 };
 
 Controls.defaultProps = {

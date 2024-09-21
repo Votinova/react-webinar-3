@@ -1,13 +1,9 @@
 import React from 'react'
 import './style.css'
-import Head from '../head';
-import Controls from '../controls';
-import List from '../list';
-import Footer from '../footer';
-import { counterPrice } from '../../utils';
+import PropTypes from 'prop-types'
 
 
-function Modal ({show, onClose, list, onDelete}) {
+function Modal ({children, show}) {
 
     if (!show) {
         return null
@@ -16,18 +12,17 @@ function Modal ({show, onClose, list, onDelete}) {
     <div className="modal">
         <div className="modal-wrapper">
             <div className="modal-content">
-                <Head title={'Корзина'} style={'Modal-title'}/>
-                <div className='close-btn'>
-                    <Controls onAdd={onClose} text={'Закрыть'}/>
-                </div>
-                <List  list={list} text={'Удалить'} onClick={onDelete}/>
-                <div className='footer'>
-                    <Footer sum={counterPrice(list)}/>
-                </div>
+                {children}
             </div>
         </div>
     </div>
   )
 }
+
+Modal.propTypes = {
+    children: PropTypes.node,
+    show: PropTypes.bool
+}
+
 
 export default React.memo(Modal);
